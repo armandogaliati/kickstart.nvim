@@ -1238,7 +1238,11 @@ require('lazy').setup({
 			-- see below for full list of options 👇
 		},
 	},
-	{ 'akinsho/toggleterm.nvim', version = '*', config = true },
+	{
+		'akinsho/toggleterm.nvim',
+		version = '*',
+		opts = { open_mapping = [[<c-\>]] },
+	},
 
 	-- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
 	-- init.lua. If you want these files, they are in the repository, so you can just download them and
