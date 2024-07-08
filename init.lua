@@ -151,7 +151,8 @@ vim.opt.inccommand = 'split'
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
-
+-- Conceal Level(obsidian)
+vim.opt.conceallevel = 1
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 -- [[ Basic Keymaps ]]
