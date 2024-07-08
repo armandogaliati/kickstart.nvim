@@ -1216,19 +1216,23 @@ require('lazy').setup({
 		},
 		opts = {
 			workspaces = {
-        {
-          name = 'NotesWsl',
-          path = '/mnt/c/Documents and Settings/arman/Documents/Notes',
-        }
+				{
+					name = '',
+					path == '',
+				},
 				--{
-					--name = 'NotesUbuntu',
-					--path = '~/Notes',
+				--name = 'NotesWsl',
+				--path = '/mnt/c/Documents and Settings/arman/Documents/Notes',
 				--},
 				--{
-					--name = 'NotesWindows',
-					--path = '~/Documents/Notes',
+				--name = 'NotesUbuntu',
+				--path = '~/Notes',
 				--},
-			-},
+				--{
+				--name = 'NotesWindows',
+				--path = '~/Documents/Notes',
+				--},
+			},
 
 			-- see below for full list of options 👇
 		},
