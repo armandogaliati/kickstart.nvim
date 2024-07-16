@@ -764,9 +764,10 @@ require('lazy').setup({
 				'pyright',
 				'css-lsp',
 				'tsserver',
+				'eslint_d',
+				'tailwindcss-language-server',
 				'markdownlint',
 				'prettier', --html,css,javascript etc formatter
-				'prettierd', --javascript formatter
 			})
 			require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
