@@ -774,7 +774,7 @@ require('lazy').setup({
 				'emmet-language-server', --html,css, language server
 				'pyright',
 				'css-lsp',
-				'tsserver',
+				'ts_ls',
 				'eslint_d',
 				'tailwindcss-language-server',
 				'omnisharp',
