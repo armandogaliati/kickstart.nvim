@@ -115,6 +115,7 @@ vim.opt.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.opt.clipboard = 'unnamedplus'
+
 local powershell_options = {
 	shell = vim.fn.executable 'pwsh' == 1 and 'pwsh' or 'powershell',
 	shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;',
@@ -526,20 +527,30 @@ require('lazy').setup({
 	},
 
 	{ -- LSP Configuration & Plugins
+
+		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
+		-- used for completion, annotations and signatures of Neovim apis
+		'folke/lazydev.nvim',
+		ft = 'lua',
+		opts = {
+			library = {
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+			},
+		},
+	},
+	{
 		'neovim/nvim-lspconfig',
 		dependencies = {
 			-- Automatically install LSPs and related tools to stdpath for Neovim
-			{ 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+			{ 'williamboman/mason.nvim', opts = {} }, -- NOTE: Must be loaded before dependants
 			'williamboman/mason-lspconfig.nvim',
 			'WhoIsSethDaniel/mason-tool-installer.nvim',
 
 			-- Useful status updates for LSP.
 			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
 			{ 'j-hui/fidget.nvim', opts = {} },
-
-			-- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
-			-- used for completion, annotations and signatures of Neovim apis
-			{ 'folke/neodev.nvim', opts = {} },
+			'hrsh7th/cmp-nvim-lsp',
 		},
 		config = function()
 			-- Brief aside: **What is LSP?**
@@ -783,6 +794,8 @@ require('lazy').setup({
 			require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
 			require('mason-lspconfig').setup {
+				ensure_installed = {},
+				automatic_installation = false,
 				handlers = {
 					function(server_name)
 						local server = servers[server_name] or {}
@@ -839,7 +852,7 @@ require('lazy').setup({
 				yaml = { 'prettier' },
 				markdown = { 'prettier' },
 				graphql = { 'prettier' },
-				javascript = { 'prettier', 'prettierd' },
+				javascript = { 'prettier' },
 				lua = { 'stylua' },
 			},
 		},
@@ -881,6 +894,7 @@ require('lazy').setup({
 			--  into multiple repos for maintenance purposes.
 			'hrsh7th/cmp-nvim-lsp',
 			'hrsh7th/cmp-path',
+			'hrsh7th/cmp-nvim-lsp-signature-help',
 		},
 		config = function()
 			-- See `:help cmp`
@@ -958,9 +972,11 @@ require('lazy').setup({
 					--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
 				},
 				sources = {
+					{ name = 'lazydev', group_index = 0 },
 					{ name = 'nvim_lsp' },
 					{ name = 'luasnip' },
 					{ name = 'path' },
+					{ name = 'nvim_lsp_signature_help' },
 				},
 			}
 		end,
