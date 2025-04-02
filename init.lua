@@ -1070,7 +1070,7 @@ require('lazy').setup({
           { action = "Telescope oldfiles",                             desc = " Recent Files",    icon = " ", key = "r" },
           { action = "Telescope live_grep",                            desc = " Find Text",       icon = " ", key = "g" },
           { action = "Lazy",                                           desc = " Lazy",            icon = "󰒲 ", key = "l" },
-          {action = "Mason",                                          desc= "Mason",            icon = "󰻬 ", key = "m"},
+          {action = "Mason",                                          desc= " Mason",            icon = "󰻬 ", key = "m"},
           { action = function() vim.api.nvim_input("<cmd>qa<cr>") end, desc = " Quit",            icon = " ", key = "q" },
         },
 					footer = function()
